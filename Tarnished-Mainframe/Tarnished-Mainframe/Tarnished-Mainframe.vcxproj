@@ -93,8 +93,9 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
-      <SubSystem>Windows</SubSystem>
-      <EntryPointSymbol>main</EntryPointSymbol>
+      <SubSystem>Console</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -105,6 +106,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
+      <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -139,6 +141,21 @@
     <ClInclude Include="TarnishedMainframe.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Excel.1.9.dll">
+      <Guid>00020813-0000-0000-c000-000000000046</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>false</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TarnishedMainframe.resx">
+      <DependentUpon>TarnishedMainframe.h</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

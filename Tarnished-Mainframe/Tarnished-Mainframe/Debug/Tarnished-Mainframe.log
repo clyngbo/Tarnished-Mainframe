@@ -1,0 +1,2 @@
+﻿LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/RELEASE' specification
+LINK : fatal error LNK1245: invalid subsystem 'NATIVE' specified; /SUBSYSTEM must be WINDOWS, WINDOWSCE, or CONSOLE
