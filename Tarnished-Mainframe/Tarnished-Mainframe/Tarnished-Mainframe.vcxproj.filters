@@ -26,6 +26,9 @@
     <ClInclude Include="TarnishedMainframe.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FileHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="TarnishedMainframe.resx">

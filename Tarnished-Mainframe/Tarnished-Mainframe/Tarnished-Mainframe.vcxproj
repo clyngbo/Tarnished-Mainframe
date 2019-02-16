@@ -139,6 +139,7 @@
     <ClCompile Include="TarnishedMainframe.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FileHandler.h" />
     <ClInclude Include="TarnishedMainframe.h">
       <FileType>CppForm</FileType>
     </ClInclude>

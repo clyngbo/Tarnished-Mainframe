@@ -1,8 +1,9 @@
 #pragma once
 #include <stdio.h>
 #include <Windows.h>
-
+#include <vector>
 #include <cstring>
+#include "FileHandler.h"
 
 
 namespace TarnishedMainframe {
@@ -53,7 +54,7 @@ namespace TarnishedMainframe {
 	private: System::Windows::Forms::CheckBox^  chk_4096x4kb;
 	private: System::Windows::Forms::CheckBox^  chk_all;
 	private: System::Windows::Forms::Label^  label1;
-	private: System::Windows::Forms::FolderBrowserDialog^  folderBrowserDialog1;
+	private: System::Windows::Forms::FolderBrowserDialog^  folder_browser;
 	private: System::Windows::Forms::Label^  label4;
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::Label^  label2;
@@ -74,6 +75,7 @@ namespace TarnishedMainframe {
 		void InitializeComponent(void)
 		{
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->combo_nas = (gcnew System::Windows::Forms::ComboBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
@@ -85,7 +87,6 @@ namespace TarnishedMainframe {
 			this->chk_all = (gcnew System::Windows::Forms::CheckBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->folderBrowserDialog1 = (gcnew System::Windows::Forms::FolderBrowserDialog());
-			this->combo_nas = (gcnew System::Windows::Forms::ComboBox());
 			this->groupBox1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -108,6 +109,16 @@ namespace TarnishedMainframe {
 			this->groupBox1->TabIndex = 0;
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Setup";
+			// 
+			// combo_nas
+			// 
+			this->combo_nas->FormattingEnabled = true;
+			this->combo_nas->Items->AddRange(gcnew cli::array< System::Object^  >(1) { L"Finder dine drev..." });
+			this->combo_nas->Location = System::Drawing::Point(515, 37);
+			this->combo_nas->Name = L"combo_nas";
+			this->combo_nas->Size = System::Drawing::Size(121, 21);
+			this->combo_nas->Sorted = true;
+			this->combo_nas->TabIndex = 12;
 			// 
 			// label4
 			// 
@@ -208,14 +219,6 @@ namespace TarnishedMainframe {
 			this->label1->TabIndex = 2;
 			this->label1->Text = L"Test med:";
 			// 
-			// combo_nas
-			// 
-			this->combo_nas->FormattingEnabled = false;
-			this->combo_nas->Location = System::Drawing::Point(515, 37);
-			this->combo_nas->Name = L"combo_nas";
-			this->combo_nas->Size = System::Drawing::Size(121, 21);
-			this->combo_nas->TabIndex = 12;
-			// 
 			// TarnishedMainframe
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -266,15 +269,14 @@ namespace TarnishedMainframe {
 		}
 	}
 	private: System::Void TarnishedMainframe_Load(System::Object^  sender, System::EventArgs^  e) {
-		cli::array<DriveInfo^>^ allDrives = System::IO::DriveInfo::GetDrives();
+		
 		combo_nas->Items->Clear();
-		for each (DriveInfo^ d in allDrives)
+		System::Collections::ArrayList^ drives = getDrives();
+		for each (System::String^ s in drives)
 		{
-			if (d->IsReady == true)
-			{
-				combo_nas->Items->Add(d->Name);
-			}
+			combo_nas->Items->Add(s);
 		}
+		//combo_nas->Items->AddRange(drives);
 	}
 	};
 };
