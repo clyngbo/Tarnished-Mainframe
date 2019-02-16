@@ -135,6 +135,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FileHandler.cpp" />
     <ClCompile Include="TarnishedMainframe.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,10 @@
 #pragma once
 #include <stdio.h>
+#include <Windows.h>
+
+#include <cstring>
+
+
 namespace TarnishedMainframe {
 
 	using namespace System;
@@ -9,6 +14,7 @@ namespace TarnishedMainframe {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace System::IO;
+
 
 
 	/// <summary>
@@ -51,6 +57,7 @@ namespace TarnishedMainframe {
 	private: System::Windows::Forms::Label^  label4;
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::Label^  label2;
+	private: System::Windows::Forms::ComboBox^  combo_nas;
 	protected:
 
 	private:
@@ -67,6 +74,9 @@ namespace TarnishedMainframe {
 		void InitializeComponent(void)
 		{
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->chk_1x20gb = (gcnew System::Windows::Forms::CheckBox());
 			this->chk_1x2gb = (gcnew System::Windows::Forms::CheckBox());
 			this->chk_200x10mb = (gcnew System::Windows::Forms::CheckBox());
@@ -75,14 +85,13 @@ namespace TarnishedMainframe {
 			this->chk_all = (gcnew System::Windows::Forms::CheckBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->folderBrowserDialog1 = (gcnew System::Windows::Forms::FolderBrowserDialog());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->combo_nas = (gcnew System::Windows::Forms::ComboBox());
 			this->groupBox1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// groupBox1
 			// 
+			this->groupBox1->Controls->Add(this->combo_nas);
 			this->groupBox1->Controls->Add(this->label4);
 			this->groupBox1->Controls->Add(this->label3);
 			this->groupBox1->Controls->Add(this->label2);
@@ -99,6 +108,35 @@ namespace TarnishedMainframe {
 			this->groupBox1->TabIndex = 0;
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Setup";
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->ForeColor = System::Drawing::Color::Red;
+			this->label4->Location = System::Drawing::Point(304, 85);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(188, 26);
+			this->label4->TabIndex = 11;
+			this->label4->Text = L"NB: Hvis en Excel ikke kan oprettes, \r\nvil alle resultaterne gemmes i results.txt"
+				L"";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(304, 60);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(146, 13);
+			this->label3->TabIndex = 10;
+			this->label3->Text = L"Sti hvor Excel fil skal gemmes";
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(304, 37);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(54, 13);
+			this->label2->TabIndex = 9;
+			this->label2->Text = L"Sti til NAS";
 			// 
 			// chk_1x20gb
 			// 
@@ -170,34 +208,13 @@ namespace TarnishedMainframe {
 			this->label1->TabIndex = 2;
 			this->label1->Text = L"Test med:";
 			// 
-			// label2
+			// combo_nas
 			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(304, 37);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(54, 13);
-			this->label2->TabIndex = 9;
-			this->label2->Text = L"Sti til NAS";
-			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(304, 60);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(146, 13);
-			this->label3->TabIndex = 10;
-			this->label3->Text = L"Sti hvor Excel fil skal gemmes";
-			// 
-			// label4
-			// 
-			this->label4->AutoSize = true;
-			this->label4->ForeColor = System::Drawing::Color::Red;
-			this->label4->Location = System::Drawing::Point(304, 85);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(188, 26);
-			this->label4->TabIndex = 11;
-			this->label4->Text = L"NB: Hvis en Excel ikke kan oprettes, \r\nvil alle resultaterne gemmes i results.txt"
-				L"";
+			this->combo_nas->FormattingEnabled = false;
+			this->combo_nas->Location = System::Drawing::Point(515, 37);
+			this->combo_nas->Name = L"combo_nas";
+			this->combo_nas->Size = System::Drawing::Size(121, 21);
+			this->combo_nas->TabIndex = 12;
 			// 
 			// TarnishedMainframe
 			// 
@@ -207,6 +224,7 @@ namespace TarnishedMainframe {
 			this->Controls->Add(this->groupBox1);
 			this->Name = L"TarnishedMainframe";
 			this->Text = L"Tarnished Mainframe";
+			this->Load += gcnew System::EventHandler(this, &TarnishedMainframe::TarnishedMainframe_Load);
 			this->groupBox1->ResumeLayout(false);
 			this->groupBox1->PerformLayout();
 			this->ResumeLayout(false);
@@ -247,5 +265,17 @@ namespace TarnishedMainframe {
 			printf("Alle muligheder er tilgængelige igen\n");
 		}
 	}
+	private: System::Void TarnishedMainframe_Load(System::Object^  sender, System::EventArgs^  e) {
+		cli::array<DriveInfo^>^ allDrives = System::IO::DriveInfo::GetDrives();
+		combo_nas->Items->Clear();
+		for each (DriveInfo^ d in allDrives)
+		{
+			if (d->IsReady == true)
+			{
+				combo_nas->Items->Add(d->Name);
+			}
+		}
+	}
+	};
 };
-}
+

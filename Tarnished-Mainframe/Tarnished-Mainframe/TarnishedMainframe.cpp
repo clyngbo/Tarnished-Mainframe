@@ -13,7 +13,7 @@ int main(array<String^>^ args)
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
 	TarnishedMainframe::TarnishedMainframe start_screen;
-	std::printf("Programmet er startet");
+	std::printf("Programmet er startet\n");
 	Application::Run(%start_screen);
 	
 	return 0;
