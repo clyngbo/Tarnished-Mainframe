@@ -59,6 +59,8 @@ namespace TarnishedMainframe {
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::ComboBox^  combo_nas;
+	private: System::Windows::Forms::Button^  btn_browse;
+	private: System::Windows::Forms::TextBox^  textbox_excel_folder;
 	protected:
 
 	private:
@@ -86,12 +88,15 @@ namespace TarnishedMainframe {
 			this->chk_4096x4kb = (gcnew System::Windows::Forms::CheckBox());
 			this->chk_all = (gcnew System::Windows::Forms::CheckBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->folderBrowserDialog1 = (gcnew System::Windows::Forms::FolderBrowserDialog());
+			this->textbox_excel_folder = (gcnew System::Windows::Forms::TextBox());
+			this->btn_browse = (gcnew System::Windows::Forms::Button());
 			this->groupBox1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// groupBox1
 			// 
+			this->groupBox1->Controls->Add(this->btn_browse);
+			this->groupBox1->Controls->Add(this->textbox_excel_folder);
 			this->groupBox1->Controls->Add(this->combo_nas);
 			this->groupBox1->Controls->Add(this->label4);
 			this->groupBox1->Controls->Add(this->label3);
@@ -218,6 +223,22 @@ namespace TarnishedMainframe {
 			this->label1->Size = System::Drawing::Size(54, 13);
 			this->label1->TabIndex = 2;
 			this->label1->Text = L"Test med:";
+			// 
+			// textbox_excel_folder
+			// 
+			this->textbox_excel_folder->Location = System::Drawing::Point(515, 60);
+			this->textbox_excel_folder->Name = L"textbox_excel_folder";
+			this->textbox_excel_folder->Size = System::Drawing::Size(193, 20);
+			this->textbox_excel_folder->TabIndex = 13;
+			// 
+			// btn_browse
+			// 
+			this->btn_browse->Location = System::Drawing::Point(715, 60);
+			this->btn_browse->Name = L"btn_browse";
+			this->btn_browse->Size = System::Drawing::Size(75, 23);
+			this->btn_browse->TabIndex = 14;
+			this->btn_browse->Text = L"Gennemse";
+			this->btn_browse->UseVisualStyleBackColor = true;
 			// 
 			// TarnishedMainframe
 			// 
