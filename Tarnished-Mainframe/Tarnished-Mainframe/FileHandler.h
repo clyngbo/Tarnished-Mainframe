@@ -6,6 +6,6 @@
 
 System::Collections::ArrayList^ getDrives();
 
-System::String^ makeTestFiles(int, int);
+int makeTestFiles(int, int, int);
 
 void checkStatus(System::Windows::Forms::CheckBox^);

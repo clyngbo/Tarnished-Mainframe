@@ -55,14 +55,14 @@ namespace TarnishedMainframe {
 	private: System::Windows::Forms::CheckBox^  chk_all;
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::FolderBrowserDialog^  folder_browser;
-	private: System::Windows::Forms::Label^  label4;
-	private: System::Windows::Forms::Label^  label3;
+
+
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::ComboBox^  combo_nas;
-	private: System::Windows::Forms::Button^  btn_browse;
-	private: System::Windows::Forms::TextBox^  textbox_excel_folder;
+
+
 	private: System::Windows::Forms::CheckBox^  chk_delete;
-	private: System::Windows::Forms::Label^  label5;
+
 	protected:
 
 	private:
@@ -80,12 +80,7 @@ namespace TarnishedMainframe {
 		{
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
 			this->chk_delete = (gcnew System::Windows::Forms::CheckBox());
-			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->btn_browse = (gcnew System::Windows::Forms::Button());
-			this->textbox_excel_folder = (gcnew System::Windows::Forms::TextBox());
 			this->combo_nas = (gcnew System::Windows::Forms::ComboBox());
-			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->chk_1x20gb = (gcnew System::Windows::Forms::CheckBox());
 			this->chk_1x2gb = (gcnew System::Windows::Forms::CheckBox());
@@ -100,12 +95,7 @@ namespace TarnishedMainframe {
 			// groupBox1
 			// 
 			this->groupBox1->Controls->Add(this->chk_delete);
-			this->groupBox1->Controls->Add(this->label5);
-			this->groupBox1->Controls->Add(this->btn_browse);
-			this->groupBox1->Controls->Add(this->textbox_excel_folder);
 			this->groupBox1->Controls->Add(this->combo_nas);
-			this->groupBox1->Controls->Add(this->label4);
-			this->groupBox1->Controls->Add(this->label3);
 			this->groupBox1->Controls->Add(this->label2);
 			this->groupBox1->Controls->Add(this->chk_1x20gb);
 			this->groupBox1->Controls->Add(this->chk_1x2gb);
@@ -132,32 +122,6 @@ namespace TarnishedMainframe {
 			this->chk_delete->UseVisualStyleBackColor = true;
 			this->chk_delete->CheckedChanged += gcnew System::EventHandler(this, &TarnishedMainframe::chk_delete_CheckedChanged);
 			// 
-			// label5
-			// 
-			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(307, 124);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(158, 13);
-			this->label5->TabIndex = 15;
-			this->label5->Text = L"Sti hvor test filerne skal gemmes";
-			// 
-			// btn_browse
-			// 
-			this->btn_browse->Location = System::Drawing::Point(714, 58);
-			this->btn_browse->Name = L"btn_browse";
-			this->btn_browse->Size = System::Drawing::Size(75, 23);
-			this->btn_browse->TabIndex = 14;
-			this->btn_browse->Text = L"Gennemse";
-			this->btn_browse->UseVisualStyleBackColor = true;
-			this->btn_browse->Click += gcnew System::EventHandler(this, &TarnishedMainframe::btn_browse_Click);
-			// 
-			// textbox_excel_folder
-			// 
-			this->textbox_excel_folder->Location = System::Drawing::Point(515, 60);
-			this->textbox_excel_folder->Name = L"textbox_excel_folder";
-			this->textbox_excel_folder->Size = System::Drawing::Size(193, 20);
-			this->textbox_excel_folder->TabIndex = 13;
-			// 
 			// combo_nas
 			// 
 			this->combo_nas->FormattingEnabled = true;
@@ -169,26 +133,6 @@ namespace TarnishedMainframe {
 			this->combo_nas->TabIndex = 12;
 			this->combo_nas->SelectedIndexChanged += gcnew System::EventHandler(this, &TarnishedMainframe::combo_nas_SelectedIndexChanged);
 			// 
-			// label4
-			// 
-			this->label4->AutoSize = true;
-			this->label4->ForeColor = System::Drawing::Color::Red;
-			this->label4->Location = System::Drawing::Point(304, 85);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(203, 26);
-			this->label4->TabIndex = 11;
-			this->label4->Text = L"NB: Hvis en Excel ikke kan oprettes, \r\nvil alle resultaterne gemmes i C:\\results."
-				L"txt";
-			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(304, 63);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(146, 13);
-			this->label3->TabIndex = 10;
-			this->label3->Text = L"Sti hvor Excel fil skal gemmes";
-			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
@@ -197,7 +141,6 @@ namespace TarnishedMainframe {
 			this->label2->Size = System::Drawing::Size(54, 13);
 			this->label2->TabIndex = 9;
 			this->label2->Text = L"Sti til NAS";
-			this->label2->Click += gcnew System::EventHandler(this, &TarnishedMainframe::label2_Click);
 			// 
 			// chk_1x20gb
 			// 
@@ -326,17 +269,10 @@ namespace TarnishedMainframe {
 		{
 			combo_nas->Items->Add(s);
 		}
-		//combo_nas->Items->AddRange(drives);
+		makeTestFiles(1, 20, 2);
 	}
-	private: System::Void label2_Click(System::Object^  sender, System::EventArgs^  e) {
-	}
-private: System::Void btn_browse_Click(System::Object^  sender, System::EventArgs^  e) {
-	folder_browser = gcnew System::Windows::Forms::FolderBrowserDialog();
-	if (folder_browser->ShowDialog(this) == System::Windows::Forms::DialogResult::OK)
-	{
-		textbox_excel_folder->Text = folder_browser->SelectedPath;
-	}
-}
+
+
 private: System::Void chk_delete_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 	checkStatus(chk_delete);
 }
