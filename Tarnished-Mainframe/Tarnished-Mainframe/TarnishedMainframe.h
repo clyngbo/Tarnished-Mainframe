@@ -62,6 +62,7 @@ namespace TarnishedMainframe {
 
 
 	private: System::Windows::Forms::CheckBox^  chk_delete;
+	private: System::Windows::Forms::Button^  btn_run;
 
 	protected:
 
@@ -89,11 +90,13 @@ namespace TarnishedMainframe {
 			this->chk_4096x4kb = (gcnew System::Windows::Forms::CheckBox());
 			this->chk_all = (gcnew System::Windows::Forms::CheckBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->btn_run = (gcnew System::Windows::Forms::Button());
 			this->groupBox1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// groupBox1
 			// 
+			this->groupBox1->Controls->Add(this->btn_run);
 			this->groupBox1->Controls->Add(this->chk_delete);
 			this->groupBox1->Controls->Add(this->combo_nas);
 			this->groupBox1->Controls->Add(this->label2);
@@ -212,6 +215,16 @@ namespace TarnishedMainframe {
 			this->label1->TabIndex = 2;
 			this->label1->Text = L"Test med:";
 			// 
+			// btn_run
+			// 
+			this->btn_run->Location = System::Drawing::Point(990, 180);
+			this->btn_run->Name = L"btn_run";
+			this->btn_run->Size = System::Drawing::Size(75, 23);
+			this->btn_run->TabIndex = 17;
+			this->btn_run->Text = L"Kør test";
+			this->btn_run->UseVisualStyleBackColor = true;
+			this->btn_run->Click += gcnew System::EventHandler(this, &TarnishedMainframe::btn_run_Click);
+			// 
 			// TarnishedMainframe
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -269,7 +282,12 @@ namespace TarnishedMainframe {
 		{
 			combo_nas->Items->Add(s);
 		}
-		makeTestFiles(1, 20, 2);
+		//makeTestFiles(1, 20, 2);
+		//makeTestFiles(1, 2, 2);
+		//makeTestFiles(200, 10, 1);
+		//makeTestFiles(1024, 64, 0);
+		//makeTestFiles(4096, 4, 0);
+		//deleteTestfolder();
 	}
 
 
@@ -278,6 +296,9 @@ private: System::Void chk_delete_CheckedChanged(System::Object^  sender, System:
 }
 private: System::Void combo_nas_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 	System::Console::WriteLine("Sti til NAS er valgt: " + (System::String^)combo_nas->SelectedItem);
+}
+private: System::Void btn_run_Click(System::Object^  sender, System::EventArgs^  e) {
+
 }
 };
 };

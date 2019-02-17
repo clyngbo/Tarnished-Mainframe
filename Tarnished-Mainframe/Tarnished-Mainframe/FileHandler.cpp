@@ -5,7 +5,7 @@
 #include <fstream>
 #include <Windows.h>
 #include <vector>
-#include <msclr/marshal_cppstd.h>
+#include <filesystem>
 
 using namespace System;
 using namespace System::Collections;
@@ -34,9 +34,9 @@ System::Collections::ArrayList^ getDrives()
 
 int makeTestFiles(int number, int size, int unit)
 {
-	
 	CreateDirectory((LPCTSTR)L"Test_Filer", NULL);
-	long new_size;
+	long long new_size;
+	long long size_of_1GB = 1073741824;
 	System::String^ dir;
 	switch (unit)
 	{
@@ -45,12 +45,14 @@ int makeTestFiles(int number, int size, int unit)
 		break;
 	case 1:
 		new_size = 1024 * 1024 * size - 1;
-	case 2: 
-		new_size = 1024 * 1024 * 1024 * size -1;
+		break;
+	case 2:
+		new_size = size_of_1GB * (long long)size;
+		break;
 	default:
 		break;
 	}
-	
+
 	switch (size)
 	{
 	case 4:
@@ -78,33 +80,17 @@ int makeTestFiles(int number, int size, int unit)
 		break;
 	}
 	System::Console::WriteLine("New Size = " + System::Convert::ToString(new_size) + " Number = " + System::Convert::ToString(number));
-	//std::vector<char> empty(1024, 0);
+
 	for (int x = 0; x < number; x++)
 	{
 		System::String^ name_of_file = dir + "testfil_" + System::Convert::ToString(x) + ".img";
-		//msclr::interop::marshal_context context;
-		//std::string string_name_of_file = context.marshal_as<std::string>(name_of_file);
-
 		System::IO::FileStream^ fs = gcnew System::IO::FileStream(name_of_file, FileMode::Create);
 		fs->Seek(new_size, SeekOrigin::Begin);
 		fs->WriteByte(0);
 		fs->Close();
 		System::Console::WriteLine(name_of_file);
-		/*for (int i = 0; i < new_size; i++)
-			{
-				
-				std::ofstream ofs(string_name_of_file, std::ios::binary | std::ios::out);
-				System::Console::WriteLine(name_of_file);
-				if (!ofs.write(&empty[0], empty.size()))
-				{
-					std::cerr << "Problem med at skrive til fil" << std::endl;
-					return 255;
-				}
-			}*/
 	}
-
 	return 0;
-
 }
 
 void checkStatus(System::Windows::Forms::CheckBox^ chk)
@@ -116,5 +102,18 @@ void checkStatus(System::Windows::Forms::CheckBox^ chk)
 	else 
 	{
 		System::Console::WriteLine("Ingen testfiler vil blive slettet efter brug.");
+	}
+}
+
+void deleteTestfolder(void)
+{
+	bool success = std::experimental::filesystem::remove_all("Test_Filer");
+	if (success)
+	{
+		System::Console::WriteLine("Alle test filer er blevet slettet.");
+	}
+	else
+	{
+		System::Console::WriteLine("Test filerne blev ikke slettet. Du må slette dem manuelt");
 	}
 }
