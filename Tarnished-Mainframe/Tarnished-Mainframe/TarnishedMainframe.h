@@ -80,6 +80,7 @@ namespace TarnishedMainframe {
 		void InitializeComponent(void)
 		{
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->btn_run = (gcnew System::Windows::Forms::Button());
 			this->chk_delete = (gcnew System::Windows::Forms::CheckBox());
 			this->combo_nas = (gcnew System::Windows::Forms::ComboBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
@@ -90,7 +91,6 @@ namespace TarnishedMainframe {
 			this->chk_4096x4kb = (gcnew System::Windows::Forms::CheckBox());
 			this->chk_all = (gcnew System::Windows::Forms::CheckBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->btn_run = (gcnew System::Windows::Forms::Button());
 			this->groupBox1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -113,6 +113,16 @@ namespace TarnishedMainframe {
 			this->groupBox1->TabIndex = 0;
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Setup";
+			// 
+			// btn_run
+			// 
+			this->btn_run->Location = System::Drawing::Point(990, 180);
+			this->btn_run->Name = L"btn_run";
+			this->btn_run->Size = System::Drawing::Size(75, 23);
+			this->btn_run->TabIndex = 17;
+			this->btn_run->Text = L"Kør test";
+			this->btn_run->UseVisualStyleBackColor = true;
+			this->btn_run->Click += gcnew System::EventHandler(this, &TarnishedMainframe::btn_run_Click);
 			// 
 			// chk_delete
 			// 
@@ -154,6 +164,7 @@ namespace TarnishedMainframe {
 			this->chk_1x20gb->TabIndex = 8;
 			this->chk_1x20gb->Text = L"1 x 20 GB";
 			this->chk_1x20gb->UseVisualStyleBackColor = true;
+			this->chk_1x20gb->CheckedChanged += gcnew System::EventHandler(this, &TarnishedMainframe::chk_1x20gb_CheckedChanged);
 			// 
 			// chk_1x2gb
 			// 
@@ -164,6 +175,7 @@ namespace TarnishedMainframe {
 			this->chk_1x2gb->TabIndex = 7;
 			this->chk_1x2gb->Text = L"1 x 2 GB";
 			this->chk_1x2gb->UseVisualStyleBackColor = true;
+			this->chk_1x2gb->CheckedChanged += gcnew System::EventHandler(this, &TarnishedMainframe::chk_1x2gb_CheckedChanged);
 			// 
 			// chk_200x10mb
 			// 
@@ -174,6 +186,7 @@ namespace TarnishedMainframe {
 			this->chk_200x10mb->TabIndex = 6;
 			this->chk_200x10mb->Text = L"200 x 10 MB";
 			this->chk_200x10mb->UseVisualStyleBackColor = true;
+			this->chk_200x10mb->CheckedChanged += gcnew System::EventHandler(this, &TarnishedMainframe::chk_200x10mb_CheckedChanged);
 			// 
 			// chk_1024x64kb
 			// 
@@ -184,6 +197,7 @@ namespace TarnishedMainframe {
 			this->chk_1024x64kb->TabIndex = 5;
 			this->chk_1024x64kb->Text = L"1024 x 64 KB";
 			this->chk_1024x64kb->UseVisualStyleBackColor = true;
+			this->chk_1024x64kb->CheckedChanged += gcnew System::EventHandler(this, &TarnishedMainframe::chk_1024x64kb_CheckedChanged);
 			// 
 			// chk_4096x4kb
 			// 
@@ -194,6 +208,7 @@ namespace TarnishedMainframe {
 			this->chk_4096x4kb->TabIndex = 4;
 			this->chk_4096x4kb->Text = L"4096 x 4 KB";
 			this->chk_4096x4kb->UseVisualStyleBackColor = true;
+			this->chk_4096x4kb->CheckedChanged += gcnew System::EventHandler(this, &TarnishedMainframe::chk_4096x4kb_CheckedChanged);
 			// 
 			// chk_all
 			// 
@@ -214,16 +229,6 @@ namespace TarnishedMainframe {
 			this->label1->Size = System::Drawing::Size(54, 13);
 			this->label1->TabIndex = 2;
 			this->label1->Text = L"Test med:";
-			// 
-			// btn_run
-			// 
-			this->btn_run->Location = System::Drawing::Point(990, 180);
-			this->btn_run->Name = L"btn_run";
-			this->btn_run->Size = System::Drawing::Size(75, 23);
-			this->btn_run->TabIndex = 17;
-			this->btn_run->Text = L"Kør test";
-			this->btn_run->UseVisualStyleBackColor = true;
-			this->btn_run->Click += gcnew System::EventHandler(this, &TarnishedMainframe::btn_run_Click);
 			// 
 			// TarnishedMainframe
 			// 
@@ -284,10 +289,10 @@ namespace TarnishedMainframe {
 		}
 		//makeTestFiles(1, 20, 2);
 		//makeTestFiles(1, 2, 2);
-		//makeTestFiles(200, 10, 1);
+		makeTestFiles(200, 10, 1);
 		//makeTestFiles(1024, 64, 0);
 		//makeTestFiles(4096, 4, 0);
-		//deleteTestfolder();
+		copyAndDeleteTestfolder("Test_Filer", "E:/Test_Filer/");
 	}
 
 
@@ -298,7 +303,37 @@ private: System::Void combo_nas_SelectedIndexChanged(System::Object^  sender, Sy
 	System::Console::WriteLine("Sti til NAS er valgt: " + (System::String^)combo_nas->SelectedItem);
 }
 private: System::Void btn_run_Click(System::Object^  sender, System::EventArgs^  e) {
-
+	
+}
+private: System::Void chk_4096x4kb_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+	if (!chk_4096x4kb->Checked && chk_all->Checked)
+	{
+		chk_all->Checked = false;
+	}
+}
+private: System::Void chk_1024x64kb_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+	if (!chk_1024x64kb->Checked && chk_all->Checked)
+	{
+		chk_all->Checked = false;
+	}
+}
+private: System::Void chk_200x10mb_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+	if (!chk_200x10mb->Checked && chk_all->Checked)
+	{
+		chk_all->Checked = false;
+	}
+}
+private: System::Void chk_1x2gb_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+	if (!chk_1x2gb->Checked && chk_all->Checked)
+	{
+		chk_all->Checked = false;
+	}
+}
+private: System::Void chk_1x20gb_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+	if (!chk_1x20gb->Checked && chk_all->Checked)
+	{
+		chk_all->Checked = false;
+	}
 }
 };
 };

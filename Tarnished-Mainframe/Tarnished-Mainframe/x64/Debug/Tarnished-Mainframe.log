@@ -1,3 +1,81 @@
 ﻿  FileHandler.cpp
-  FileHandler.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
-  Tarnished-Mainframe.vcxproj -> C:\Users\Christian\Documents\GitHub\Tarnished-Mainframe\Tarnished-Mainframe\x64\Debug\Tarnished-Mainframe.exe
+c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\msclr\marshal.h(240): error C4996: 'msclr::interop::error_reporting_helper<_To_Type,_From_Type,false>::marshal_as': This conversion is not supported by the library or the header file needed for this conversion is not included.  Please refer to the documentation on 'How to: Extend the Marshaling Library' for adding your own marshaling method.
+          with
+          [
+              _To_Type=std::string,
+              _From_Type=System::String ^
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\msclr\marshal.h(220): note: see declaration of 'msclr::interop::error_reporting_helper<_To_Type,_From_Type,false>::marshal_as'
+          with
+          [
+              _To_Type=std::string,
+              _From_Type=System::String ^
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\msclr\marshal.h(297): note: see reference to function template instantiation '_To_Type msclr::interop::marshal_as<_To_Type,_From_Type>(const _From_Type &)' being compiled
+          with
+          [
+              _To_Type=std::string,
+              _From_Type=System::String ^
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\msclr\marshal.h(295): note: while compiling class template member function '_To_Type msclr::interop::marshal_context::internal_marshaler<_To_Type,_From_Type ^,false>::marshal_as(System::String &,System::Collections::Generic::LinkedList<System::Object ^> %)'
+          with
+          [
+              _To_Type=std::string,
+              _From_Type=System::String
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\msclr\marshal.h(313): note: see reference to function template instantiation '_To_Type msclr::interop::marshal_context::internal_marshaler<_To_Type,_From_Type ^,false>::marshal_as(System::String &,System::Collections::Generic::LinkedList<System::Object ^> %)' being compiled
+          with
+          [
+              _To_Type=std::string,
+              _From_Type=System::String
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\msclr\marshal.h(313): note: see reference to class template instantiation 'msclr::interop::marshal_context::internal_marshaler<_To_Type,_From_Type ^,false>' being compiled
+          with
+          [
+              _To_Type=std::string,
+              _From_Type=System::String
+          ]
+  c:\users\christian\documents\github\tarnished-mainframe\tarnished-mainframe\tarnished-mainframe\filehandler.cpp(129): note: see reference to function template instantiation '_To_Type msclr::interop::marshal_context::marshal_as<std::string,System::String>(_From_Type ^)' being compiled
+          with
+          [
+              _To_Type=std::string,
+              _From_Type=System::String
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\filesystem(2392): note: see reference to class template instantiation 'std::chrono::time_point<std::filesystem::_File_time_clock,std::filesystem::_File_time_clock::duration>' being compiled
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\type_traits(616): note: see reference to class template instantiation 'std::basic_string_view<wchar_t,std::char_traits<wchar_t>>' being compiled
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\xstring(2124): note: see reference to class template instantiation 'std::is_convertible<const _StringViewIsh &,std::basic_string_view<wchar_t,std::char_traits<wchar_t>>>' being compiled
+          with
+          [
+              _StringViewIsh=const wchar_t *
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\xstring(2122): note: see reference to variable template 'const bool conjunction_v<std::is_convertible<wchar_t const * const &,std::basic_string_view<wchar_t,std::char_traits<wchar_t> > >,std::negation<std::is_convertible<wchar_t const * const &,wchar_t const *> > >' being compiled
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\xstring(2281): note: see reference to alias template instantiation 'std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::_Is_string_view_ish<_StringViewIsh>' being compiled
+          with
+          [
+              _StringViewIsh=const wchar_t *
+          ]
+c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\msclr\marshal.h(222): error C2065: '_This_conversion_is_not_supported': undeclared identifier
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\msclr\marshal.h(221): note: while compiling class template member function '_To_Type msclr::interop::error_reporting_helper<_To_Type,_From_Type,false>::marshal_as(const _From_Type &)'
+          with
+          [
+              _To_Type=std::string,
+              _From_Type=System::String ^
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\msclr\marshal.h(240): note: see reference to function template instantiation '_To_Type msclr::interop::error_reporting_helper<_To_Type,_From_Type,false>::marshal_as(const _From_Type &)' being compiled
+          with
+          [
+              _To_Type=std::string,
+              _From_Type=System::String ^
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\msclr\marshal.h(240): note: see reference to class template instantiation 'msclr::interop::error_reporting_helper<_To_Type,_From_Type,false>' being compiled
+          with
+          [
+              _To_Type=std::string,
+              _From_Type=System::String ^
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\msclr\marshal.h(297): note: see reference to function template instantiation '_To_Type msclr::interop::marshal_as<_To_Type,_From_Type>(const _From_Type &)' being compiled
+          with
+          [
+              _To_Type=std::string,
+              _From_Type=System::String ^
+          ]

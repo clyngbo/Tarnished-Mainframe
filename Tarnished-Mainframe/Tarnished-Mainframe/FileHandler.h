@@ -10,4 +10,6 @@ int makeTestFiles(int, int, int);
 
 void checkStatus(System::Windows::Forms::CheckBox^);
 
-void deleteTestfolder(void);
+void deleteTestfolder(System::String^);
+
+long long copyAndDeleteTestfolder(System::String^, System::String^);

@@ -5,13 +5,15 @@
 #include <fstream>
 #include <Windows.h>
 #include <vector>
+#include <WinBase.h>
 #include <filesystem>
-
+#include <msclr\marshal.h>
 using namespace System;
 using namespace System::Collections;
 using namespace System::IO;
 using namespace System::Data;
 using namespace std;
+using namespace msclr::interop;
 
 enum units {KB=0, MB=1, GB=2};
 
@@ -105,15 +107,41 @@ void checkStatus(System::Windows::Forms::CheckBox^ chk)
 	}
 }
 
-void deleteTestfolder(void)
+void deleteTestfolder(System::String^ path)
 {
-	bool success = std::experimental::filesystem::remove_all("Test_Filer");
-	if (success)
-	{
+	try {
+		System::IO::Directory::Delete(path, true);
 		System::Console::WriteLine("Alle test filer er blevet slettet.");
 	}
-	else
+	catch (System::IO::IOException^ e)
 	{
-		System::Console::WriteLine("Test filerne blev ikke slettet. Du må slette dem manuelt");
+		System::Console::WriteLine("Test filerne blev ikke slettet. Du må slette dem manuelt.\n Følgende fejlmeddelse fra systemet: \n"+ e->Message);
 	}
+}
+
+long long copyAndDeleteTestfolder(System::String^ from, System::String^ to)
+{
+	msclr::interop::marshal_context mc;
+	//LPCTSTR sauce = mc.marshal_as<LPCTSTR>(from);
+
+	LPCTSTR distf = mc.marshal_as<LPCTSTR>(to);
+
+	std::filesystem::path sauce = mc.marshal_as<std::string>(from);
+	std::filesystem::path dist = mc.marshal_as<std::string>(to);
+
+	CreateDirectory(distf, NULL);
+	System::String^ cmd = "copy " + from + " " + to;
+	System::Diagnostics::Stopwatch^ sw = gcnew System::Diagnostics::Stopwatch();
+	//System::IO::FileInfo^ di = gcnew System::IO::FileInfo(from);
+	
+	
+	sw->Start();
+	std::filesystem::copy(sauce, dist, std::filesystem::copy_options::recursive);
+	//System::IO::Directory::Move(from, to);
+	//MoveFile(sauce, dist);
+	//di->MoveTo(to);
+	sw->Stop();
+	//deleteTestfolder(from);
+	System::Console::WriteLine(sw->Elapsed);
+	return sw->ElapsedMilliseconds;
 }
